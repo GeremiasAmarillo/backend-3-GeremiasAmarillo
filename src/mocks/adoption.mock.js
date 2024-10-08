@@ -4,9 +4,9 @@ export const generateAdoptionMock = (count) => {
   const adoptions = [];
   for (let i = 0; i < count; i++) {
     adoptions.push({
-      owner: faker.datatype.uuid(), // Cambia esto según tu esquema
-      pet: faker.datatype.uuid(), // Cambia esto según tu esquema
-      adoptionDate: faker.date.past(), // Fecha de adopción
+      owner: faker.datatype.uuid(),
+      pet: faker.datatype.uuid(),
+      adoptionDate: faker.date.past(),
     });
   }
   return adoptions;

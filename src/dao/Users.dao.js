@@ -6,7 +6,7 @@ export default class Users {
   };
 
   getBy = (params) => {
-    return userModel.findOne(params);
+    return userModel.findById(params);
   };
 
   save = (doc) => {

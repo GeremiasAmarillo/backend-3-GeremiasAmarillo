@@ -22,6 +22,13 @@ export class UserServices {
     if (!user) throw customError.badRequestError("Failed to create user");
     return user;
   }
+
+  async crateMany(data) {
+    const users = await this.userDao.saveMany(data);
+
+    return users;
+  }
+
   async update(id, data) {
     const user = await this.userDao.update(id, data);
     if (!user) throw customError.notFoundError(`User id ${id} not found`);

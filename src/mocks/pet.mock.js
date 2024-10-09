@@ -4,11 +4,12 @@ export const generatePetsMock = (amount) => {
   const pets = [];
   for (let i = 0; i < amount; i++) {
     const pet = {
-      name: faker.animal.type(),
-      specie: faker.animal.cat(),
-      adopted: faker.datatype.boolean(),
-      birthDate: faker.date.past(5).toISOString().split("T")[0],
+      name: faker.name.firstName(),
+      specie: faker.animal.type(),
+      adopted: false,
+      birthDate: faker.date.past(),
       owner: null,
+      image: faker.image.avatar(),
     };
     pets.push(pet);
   }

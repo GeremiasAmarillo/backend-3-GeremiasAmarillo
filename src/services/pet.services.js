@@ -17,6 +17,13 @@ export class PetServices {
     const pet = await this.petDao.save(data);
     return pet;
   }
+
+  async crateMany(data) {
+    const pets = await this.petDao.saveMany(data);
+
+    return pets;
+  }
+
   async update(id, data) {
     const pet = await this.petDao.update(id, data);
     return pet;

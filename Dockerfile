@@ -1,7 +1,7 @@
 # Definimos una imagen base de node y su versión para nuestro contenedor
 FROM node
 
-# Definimos el directorio de trabajo dentro del contenedor 
+# Definimos el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
 # Copiamos el archivo package.json a la carpeta de trabajo

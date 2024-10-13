@@ -1,4 +1,4 @@
-import Adoptions from "../dao/Adoptions.dao.js"; // Asegúrate de tener un DAO para adopciones
+import Adoptions from "../dao/Adoptions.dao.js";
 import { generateAdoptionsMock } from "../mocks/adoption.mock.js";
 
 export class AdoptionServices {

@@ -12,7 +12,7 @@ export class PetsController {
       const pets = await this.petsServices.createMocks();
       res.status(201).json({ message: "Mock pets created", pets });
     } catch (error) {
-      console.error("Error creating mock pets:", error); // Agrega logs para depuración
+      console.error("Error creating mock pets:", error);
       res
         .status(500)
         .json({ message: "Error creating mock pets", error: error.message });

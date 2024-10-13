@@ -9,28 +9,41 @@ const petsServices = new PetServices();
 const router = Router();
 
 router.get("/mockingpets", async (req, res) => {
-  const users = generatePetsMock(100);
-  const response = await petsServices.createMany(pets);
-  res.status(201).json({ status: "success", payload: response });
+  try {
+    const pets = generatePetsMock(100);
+    const response = await petsServices.createMany(pets);
+    res.status(201).json({ status: "success", payload: response });
+  } catch (error) {
+    res.status(500).json({ status: "error", message: error.message });
+  }
 });
 
 router.get("/mockingusers", async (req, res) => {
-  const users = generateUsersMock(50);
-  const response = await userServices.crateMany(users);
+  try {
+    const users = await generateUsersMock(50); // Usar await aquí
+    const response = await userServices.createMany(users);
 
-  res.status(201).json({ status: "success", payload: response });
+    res.status(201).json({ status: "success", payload: response });
+  } catch (error) {
+    res.status(500).json({ status: "error", message: error.message });
+  }
 });
 
 router.get("/generateData/:cu/:cp", async (req, res) => {
   const { cu, cp } = req.params;
-  const users = generateUsersMock(cu);
-  const pets = generatePetsMock(cp);
-  const userResponse = await userServices.createMany(users);
-  const petsResponse = await petsServices.createMany(pets);
 
-  res
-    .status(201)
-    .json({ status: success, payload: { userResponse, petsResponse } });
+  try {
+    const users = await generateUsersMock(cu);
+    const pets = await generatePetsMock(cp);
+    const userResponse = await userServices.createMany(users);
+    const petsResponse = await petsServices.createMany(pets);
+
+    res
+      .status(201)
+      .json({ status: "success", payload: { userResponse, petsResponse } });
+  } catch (error) {
+    res.status(500).json({ status: "error", message: error.message });
+  }
 });
 
 export default router;

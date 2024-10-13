@@ -18,7 +18,7 @@ export class PetServices {
     return pet;
   }
 
-  async crateMany(data) {
+  async createMany(data) {
     const pets = await this.petDao.saveMany(data);
 
     return pets;
@@ -39,7 +39,7 @@ export class PetServices {
       return petsDb;
     } catch (error) {
       console.error("Error in createMocks:", error);
-      throw new Error("Error creating mock pets"); // Lanza un error que se puede manejar en el controlador
+      throw new Error("Error creating mock pets");
     }
   }
 }

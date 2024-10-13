@@ -11,12 +11,7 @@ const register = async (req, res) => {
     if (!first_name || !last_name || !email || !password)
       return res
         .status(400)
-        .send({ status: "error", error: "Incomplete values" }); /* 
-    const exists = await usersService.getUserByEmail(email);
-    if (exists)
-      return res
-        .status(400)
-        .send({ status: "error", error: "User already exists" }); */
+        .send({ status: "error", error: "Incomplete values" });
     const hashedPassword = await createHash(password);
     const user = {
       first_name,

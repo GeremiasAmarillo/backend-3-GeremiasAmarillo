@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Users from "../dao/Users.dao.js";
 import { customError } from "../errors/custom.error.js";
 
@@ -17,12 +18,7 @@ export class UserServices {
     return user;
   }
   async create(data) {
-    if (data.password) {
-      data.password = await createHash(data.password);
-    }
-
     const user = await this.userDao.save(data);
-    if (!user) throw customError.badRequestError("Failed to create user");
     return user;
   }
 
@@ -38,15 +34,20 @@ export class UserServices {
     return user;
   }
   async remove(id) {
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw customError.badRequestError(`Invalid ObjectId: ${id}`);
+    try {
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        throw customError.badRequestError(`Invalid ObjectId: ${id}`);
+      }
+      const user = await this.userDao.getBy(id);
+      if (!user) {
+        throw customError.notFoundError(`User id ${id} not found`);
+      }
+      await this.userDao.delete(id);
+      return "User Deleted";
+    } catch (error) {
+      console.error("Error in remove method:", error);
+      throw error;
     }
-    const user = await this.userDao.getBy(id);
-    if (!user) {
-      throw customError.notFoundError(`User id ${id} not found`);
-    }
-    await this.userDao.delete(id);
-    return "User Deleted";
   }
 
   createUserMock = async (req, res) => {

@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
+const collection = "Users";
+
+const Schema = new mongoose.Schema({
   first_name: {
     type: String,
     required: true,
@@ -23,14 +25,19 @@ const userSchema = new mongoose.Schema({
     enum: ["user", "admin"],
     default: "user",
   },
-  pets: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Pet",
-    },
-  ],
+  pets: {
+    type: [
+      {
+        _id: {
+          type: mongoose.SchemaTypes.ObjectId,
+          ref: "Pets",
+        },
+      },
+    ],
+    default: [],
+  },
 });
 
-const User = mongoose.model("User", userSchema);
+const userModel = mongoose.model(collection, Schema);
 
-export default User;
+export default userModel;

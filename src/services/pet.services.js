@@ -28,13 +28,16 @@ export class PetServices {
     const pet = await this.petDao.update(id, data);
     return pet;
   }
-  async remove(id) {
-    await this.petDao.delete(id);
+  async delete(id) {
+    const deletedPet = await this.petDao.delete(id);
+    if (!deletedPet) {
+      throw new Error("No pet found with the given id.");
+    }
     return "Pet Deleted";
   }
   async createMocks() {
     try {
-      const pets = generatePetsMock(10);
+      const pets = generatePetsMock(5);
       const petsDb = await this.petDao.saveMany(pets);
       return petsDb;
     } catch (error) {

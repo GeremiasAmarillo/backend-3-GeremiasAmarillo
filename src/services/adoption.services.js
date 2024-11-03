@@ -22,7 +22,7 @@ export class AdoptionServices {
     return await this.adoptionDao.update(id, data);
   }
 
-  async remove(id) {
+  async delete(id) {
     await this.adoptionDao.delete(id);
     return "Adoption Deleted";
   }

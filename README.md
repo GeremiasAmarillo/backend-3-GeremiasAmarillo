@@ -6,7 +6,7 @@
 
 # Proyecto de Adopciones
 
-Este es un proyecto backend para un sistema de gestión de adopciones de mascotas. Los usuarios pueden registrarse, iniciar sesión, ver mascotas disponibles para adopción y realizar una adopción. El sistema está diseñado para administrar mascotas, usuarios y adopciones con un enfoque en la autenticación, la validación de roles y el manejo de adopciones.
+Este es un proyecto backend para un sistema de gestión de adopciones de mascotas.
 
 ## Funcionalidades
 
